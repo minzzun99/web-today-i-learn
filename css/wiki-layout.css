@@ -251,19 +251,32 @@ main {
    인생 작품 카드 & iframe (레이아웃 완벽 수정)
 ========================================= */
 /* works-list 전체를 하나의 카드 컨테이너로 만듭니다 */
+/* =========================================
+   인생 작품 카드 & iframe (ul, li 구조 완벽 적용)
+========================================= */
+/* ul 태그: 리스트 전체를 감싸는 컨테이너 */
 .works-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 40px; /* 작품과 작품 사이의 간격 */
   margin-bottom: 40px;
-  padding: 24px;
-  background-color: var(--ag-black);
-  border: 1px solid var(--border-color);
-  border-left: 5px solid var(--ag-yellow); /* 노란색 포인트 라인 */
+  padding: 0;
+  list-style: none; /* 리스트 앞에 찍히는 기본 점(bullet) 제거 */
 }
 
 .works-list:last-child {
   margin-bottom: 0;
+}
+
+/* 🚀 li 태그: 각각의 작품 블록 (터미널 감성 테두리와 배경은 여기서 담당) */
+.work-item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background-color: var(--ag-black);
+  border: 1px solid var(--border-color);
+  border-left: 5px solid var(--ag-yellow); /* 노란색 포인트 라인 */
 }
 
 /* 썸네일과 텍스트 영역 (무조건 가로 배치) */
@@ -272,7 +285,7 @@ main {
   flex-direction: row;
   align-items: flex-start;
   gap: 24px;
-  background-color: transparent;
+  background-color: transparent; /* 배경색은 부모(work-item)가 가지므로 투명하게 */
   border: none;
   padding: 0;
 }
@@ -305,10 +318,11 @@ main {
 .work-info p {
   color: #aaa;
   margin-bottom: 8px;
+  line-height: 1.6;
 }
 
-/* 🚀 iframe 영상 크기 꽉 채우기 */
-.works-list iframe {
+/* 🚀 iframe 영상 크기 꽉 채우기 (.works-list -> .work-item 으로 변경) */
+.work-item iframe {
   width: 100%;
   height: auto;
   min-height: 400px; /* 세로 높이 시원하게 보장 */
