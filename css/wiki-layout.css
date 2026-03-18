@@ -1,4 +1,31 @@
-/* 상단 내비게이션 */
+/* =========================================
+   Agnoster & Terminal Theme Palette
+========================================= */
+:root {
+  --term-bg: #1e1e1e;          /* 터미널 배경 (Dark) */
+  --term-fg: #d4d4d4;          /* 터미널 기본 글자색 */
+  --ag-blue: #2b90d9;          /* Agnoster 블루 */
+  --ag-dark-blue: #1a5c8b;
+  --ag-green: #238b22;         /* Agnoster 그린 */
+  --ag-yellow: #d1b522;        /* Agnoster 옐로우 */
+  --ag-black: #2d2d2d;         /* 섹션 배경 */
+  --mac-red: #ff5f56;
+  --mac-yellow: #ffbd2e;
+  --mac-green: #27c93f;
+  --border-color: #444;
+}
+
+body {
+  background-color: var(--term-bg);
+  color: var(--term-fg);
+  /* 개발자 감성을 위해 전체 폰트를 고정폭(Monospace)으로 변경 */
+  font-family: 'D2Coding', 'Fira Code', 'Consolas', 'Courier New', monospace;
+  line-height: 1.6;
+}
+
+/* =========================================
+   상단 내비게이션 (상태 표시줄 느낌)
+========================================= */
 .top-nav {
   position: sticky;
   top: 0;
@@ -6,57 +33,91 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 32px;
-  height: 56px;
-  background-color: var(--nav-bg-color);
-  border-bottom: 1px solid var(--divider-color);
-  z-index: 10;
+  height: 60px;
+  background-color: #111;
+  border-bottom: 1px solid #000;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
 .nav-logo {
-  font-family: "Jua", serif;
-  font-size: 1.4rem;
-  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--ag-yellow);
 }
 
 .nav-links {
   display: flex;
-  gap: 24px;
+  gap: 28px;
   list-style: none;
 }
 
 .nav-links a {
   text-decoration: none;
-  color: var(--font-default-color);
-  font-size: 0.9rem;
+  color: var(--term-fg);
+  font-size: 0.95rem;
   transition: color 0.2s;
 }
 
 .nav-links a:hover {
-  color: var(--primary-color);
+  color: var(--ag-blue);
 }
 
-/* 프로필 히어로 */
+/* =========================================
+   프로필 히어로 (Mac 터미널 창 스타일)
+========================================= */
 .hero {
   display: flex;
   justify-content: center;
-  padding: 64px 32px;
-  background-color: var(--hero-bg-color);
+  padding: 60px 32px;
+  background-color: var(--term-bg);
 }
 
 .profile-card {
   display: flex;
   align-items: center;
-  gap: 32px;
-  max-width: 600px;
+  gap: 40px;
+  max-width: 700px;
+  width: 100%;
+  background-color: var(--ag-black);
+  padding: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  position: relative;
+}
+
+/* Mac 터미널 상단 신호등 버튼 */
+.profile-card::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--mac-red);
+  box-shadow: 20px 0 0 var(--mac-yellow), 40px 0 0 var(--mac-green);
+}
+
+/* 터미널 프롬프트 텍스트 */
+.profile-card::after {
+  content: "minjun@macbook-m5 ~ % ./profile.sh";
+  position: absolute;
+  top: 12px;
+  left: 80px;
+  color: #888;
+  font-size: 0.85rem;
 }
 
 .profile-image {
   width: 160px;
   height: 160px;
-  border-radius: 50%;
-  background-color: #ddd;
+  border-radius: 10px; /* 터미널에선 네모난 프사가 어울림 */
+  background-color: #000;
   flex-shrink: 0;
   overflow: hidden;
+  border: 2px solid var(--ag-blue);
 }
 
 .profile-image img {
@@ -66,48 +127,106 @@
 }
 
 .profile-info h1 {
-  font-size: 2rem;
-  margin-bottom: 8px;
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  color: var(--ag-yellow);
 }
 
 .profile-info .tagline {
-  color: #777;
+  color: var(--ag-green);
   line-height: 1.6;
+  font-size: 1.1rem;
 }
 
-/* 메인 콘텐츠 */
+/* =========================================
+   메인 콘텐츠 공통
+========================================= */
 main {
-  max-width: 780px;
+  max-width: 850px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
 .content-section {
-  padding: 48px 0;
-  border-bottom: 1px solid var(--divider-color);
+  padding: 60px 0;
+  border-bottom: 1px dashed var(--border-color);
 }
 
 .content-section:last-child {
   border-bottom: none;
 }
 
+/* 🚀 Agnoster Powerline 스타일 제목 (핵심) */
 .content-section h2 {
-  font-size: 1.6rem;
-  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--ag-blue);
+  color: #fff;
+  height: 44px; /* 텍스트 상자 높이를 정확히 고정 */
+  padding: 0 16px 0 20px;
+  font-size: 1.3rem;
+  margin-bottom: 24px;
+  position: relative;
+  font-weight: bold;
+}
+
+/* Powerline 화살표 (CSS 테두리 트릭) */
+.content-section h2::after {
+  content: "";
+  position: absolute;
+  right: -22px; /* 높이의 절반값 */
+  top: 0;
+  width: 0;
+  height: 0;
+  border-top: 22px solid transparent; /* 정확히 44px의 절반 */
+  border-bottom: 22px solid transparent; /* 정확히 44px의 절반 */
+  border-left: 22px solid var(--ag-blue);
 }
 
 .content-section > p,
 .section-desc {
-  color: #666;
+  color: #aaa;
   line-height: 1.8;
   margin-bottom: 24px;
 }
 
-/* 갤러리 그리드 */
+.content-section a {
+  color: var(--ag-blue);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--ag-blue);
+}
+
+/* =========================================
+   기본 정보 테이블
+========================================= */
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--ag-black);
+  border: 1px solid var(--border-color);
+}
+
+.info-table th,
+.info-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.info-table th {
+  width: 140px;
+  color: var(--ag-green);
+  font-weight: 700;
+  border-right: 1px solid var(--border-color);
+}
+
+/* =========================================
+   갤러리 그리드
+========================================= */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  gap: 16px;
 }
 
 .gallery-grid img {
@@ -115,257 +234,233 @@ main {
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 4px;
+  filter: grayscale(40%); /* 터미널 감성을 위해 약간 톤다운 */
+  transition: all 0.3s;
 }
 
-/* 인생 작품 카드 */
+.gallery-grid img:hover {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.8);
+  border: 2px solid var(--ag-blue);
+  z-index: 10;
+  position: relative;
+}
+
+/* =========================================
+   인생 작품 카드 & iframe (레이아웃 완벽 수정)
+========================================= */
+/* works-list 전체를 하나의 카드 컨테이너로 만듭니다 */
 .works-list {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
+  margin-bottom: 40px;
+  padding: 24px;
+  background-color: var(--ag-black);
+  border: 1px solid var(--border-color);
+  border-left: 5px solid var(--ag-yellow); /* 노란색 포인트 라인 */
 }
 
+.works-list:last-child {
+  margin-bottom: 0;
+}
+
+/* 썸네일과 텍스트 영역 (무조건 가로 배치) */
 .work-card {
   display: flex;
-  gap: 20px;
-  padding: 20px;
-  border-radius: 8px;
-  background-color: var(--card-bg-color);
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 24px;
+  background-color: transparent;
+  border: none;
+  padding: 0;
 }
 
 .work-thumbnail {
   width: 140px;
-  height: 180px;
-  background-color: #ddd;
-  border-radius: 4px;
-  flex-shrink: 0;
-  overflow: hidden;
+  height: auto;
+  flex-shrink: 0; /* 이미지가 찌그러지지 않게 고정 */
+  border: 1px solid var(--border-color);
+  background-color: #000;
 }
 
 .work-thumbnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+}
+
+.work-info {
+  flex: 1; /* 남은 텍스트 영역이 공간을 꽉 채우도록 */
 }
 
 .work-info h3 {
-  font-size: 1.2rem;
-  margin-bottom: 8px;
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  color: var(--term-fg);
 }
 
 .work-info p {
-  color: #666;
-  line-height: 1.6;
-}
-
-/* TIL */
-.til-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.til-item {
-  padding: 20px;
-  border-left: 3px solid var(--primary-color);
-  background-color: var(--card-bg-color);
-  border-radius: 0 8px 8px 0;
-}
-
-.til-item time {
-  font-size: 0.85rem;
-  color: #999;
-}
-
-.til-item h3 {
-  font-size: 1.1rem;
-  margin: 8px 0;
-}
-
-.til-item p {
-  color: #666;
-  line-height: 1.6;
-}
-
-/* 방명록 */
-.comment-form-container form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 32px;
-}
-
-.comment-form-container input,
-.comment-form-container textarea {
-  padding: 12px;
-  border: 1px solid var(--divider-color);
-  border-radius: 6px;
-  font-family: inherit;
-  font-size: 0.95rem;
-}
-
-.comment-form-container textarea {
-  min-height: 80px;
-  resize: vertical;
-}
-
-.comment-buttons {
-  display: flex;
-  gap: 8px;
-  justify-content: flex-end;
-}
-
-.comment-buttons button {
-  padding: 8px 20px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.comment-buttons button[type="button"] {
-  background-color: var(--primary-color);
-  color: #fff;
-}
-
-.comment-buttons button[type="reset"] {
-  background-color: #eee;
-  color: #666;
-}
-
-.comment-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.comment-item {
-  padding: 16px;
-  background-color: var(--card-bg-color);
-  border-radius: 8px;
-}
-
-.comment-item strong {
-  font-size: 0.9rem;
-  color: var(--primary-color);
-}
-
-.comment-item p {
-  margin-top: 6px;
-  color: #555;
-  line-height: 1.6;
-}
-
-/* 푸터 */
-footer {
-  text-align: center;
-  padding: 32px;
   color: #aaa;
-  font-size: 0.85rem;
+  margin-bottom: 8px;
 }
 
-/* 기본 정보 테이블 */
-.info-table {
+/* 🚀 iframe 영상 크기 꽉 채우기 */
+.works-list iframe {
   width: 100%;
-  border-collapse: collapse;
+  height: auto;
+  min-height: 400px; /* 세로 높이 시원하게 보장 */
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--border-color);
+  background-color: #000;
+  margin-top: 10px;
 }
 
-.info-table th,
-.info-table td {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--divider-color);
-  text-align: left;
-}
-
-.info-table th {
-  width: 140px;
-  color: #555;
-  font-weight: 700;
-  background-color: var(--card-bg-color);
-}
-
-.info-table td {
-  color: #333;
-}
-
-/* TIL 작성 폼 */
+/* =========================================
+   TIL 폼 (터미널 입력창 느낌)
+========================================= */
+/* =========================================
+   TIL 폼 (원래 사이즈 및 가로 배치 복구)
+========================================= */
 .til-form {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding: 24px;
-  margin-bottom: 32px;
-  border: 1px solid var(--divider-color);
-  border-radius: 8px;
-  background-color: var(--card-bg-color);
+  gap: 20px;
+  padding: 32px;
+  margin-bottom: 40px;
+  background-color: var(--ag-black);
+  border: 1px solid var(--border-color);
 }
 
-.til-form .form-group {
+.form-group {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  flex-direction: row; /* 라벨과 인풋창을 나란히(가로) 배치 */
+  align-items: flex-start; /* 텍스트 에어리어 높이 때문에 위쪽 정렬 */
+  gap: 24px;
 }
 
 .til-form label {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #555;
+  color: var(--ag-blue);
+  font-weight: bold;
+  width: 50px; /* 라벨 너비 고정 */
+  margin-top: 10px; /* 인풋창 텍스트 라인과 맞추기 */
+  text-align: left;
 }
 
+/* 🚀 TIL 입력창 가로로 넓게 확장 */
 .til-form input,
 .til-form textarea {
-  padding: 10px 12px;
-  border: 1px solid var(--divider-color);
-  border-radius: 6px;
+  padding: 10px 14px;
+  background-color: var(--term-bg);
+  color: var(--term-fg);
+  border: 1px solid var(--border-color);
   font-family: inherit;
   font-size: 0.95rem;
+  
+  /* 여기서부터 수정된 부분 */
+  flex: 1;           /* 라벨 옆의 남은 공간을 꽉 채우도록 설정 */
+  width: 100%;
+  max-width: 100%;   /* 기존 350px 제한 해제 */
 }
 
 .til-form textarea {
-  min-height: 80px;
+  min-height: 100px;
   resize: vertical;
 }
 
-.til-form .form-actions {
+.til-form input:focus,
+.til-form textarea:focus {
+  outline: none;
+  border-color: var(--ag-green);
+}
+
+.form-actions {
   display: flex;
-  gap: 8px;
-  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .til-form button {
-  padding: 8px 20px;
+  padding: 12px 24px;
   border: none;
-  border-radius: 6px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  font-weight: bold;
+  font-family: inherit;
+  flex: 1;
 }
 
 .til-form button[type="submit"] {
-  background-color: var(--primary-color);
+  background-color: var(--ag-green);
   color: #fff;
 }
 
+.til-form button[type="submit"]:hover {
+  background-color: #1e7a1d;
+}
+
 .til-form button[type="reset"] {
-  background-color: #eee;
+  background-color: #444;
+  color: #ccc;
+}
+
+.til-form button[type="reset"]:hover {
+  background-color: #555;
+}
+
+/* =========================================
+   TIL 리스트
+========================================= */
+.til-item {
+  padding: 24px;
+  background-color: var(--ag-black);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--ag-blue);
+  margin-bottom: 16px;
+}
+
+.til-item time {
+  color: var(--ag-yellow);
+  font-weight: bold;
+}
+
+.til-item h3 {
+  font-size: 1.25rem;
+  margin: 12px 0 8px;
+  color: #fff;
+}
+
+.til-item p {
+  color: #aaa;
+}
+
+/* =========================================
+   푸터
+========================================= */
+footer {
+  text-align: center;
+  padding: 40px 24px;
   color: #666;
+  background-color: #111;
+  border-top: 1px solid #000;
+  font-size: 0.85rem;
 }
 
-/* 영상 삽입 */
-.work-card iframe,
-.work-card video {
-  width: 100%;
-  max-width: 480px;
-  aspect-ratio: 16 / 9;
-  border: none;
-  border-radius: 4px;
-}
-
-/* 변수 */
-:root {
-  --primary-color: #4a7c59;
-  --nav-bg-color: #fff;
-  --hero-bg-color: #f8faf8;
-  --card-bg-color: #fafafa;
-  --divider-color: #e8e8e8;
-  --font-default-color: #333;
+/* =========================================
+   반응형 (모바일)
+========================================= */
+@media (max-width: 600px) {
+  .work-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .works-list iframe {
+    min-height: 250px;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
